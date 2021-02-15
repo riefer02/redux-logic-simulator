@@ -3,25 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.1.1",
+    "@reduxjs/toolkit": "^1.5.0",
+    "@tailwindcss/postcss7-compat": "^2.0.3",
     "@tailwindcss/ui": "^0.7.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.0",
-    "postcss": "^8.2.6",
-    "postcss-cli": "^8.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^6.15.1",
+    "react-redux": "^7.2.2",
     "react-scripts": "4.0.2",
-    "tailwindcss": "^1.5.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run build:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -42,13 +42,17 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.4",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
     "postcss-color-function": "^4.1.0",
     "postcss-import": "^14.0.0",
     "postcss-initial": "^4.0.0",
     "postcss-math": "0.0.10",
     "postcss-mixins": "^7.0.3",
     "postcss-nested": "^5.0.3",
-    "postcss-simple-vars": "^6.0.3"
+    "postcss-simple-vars": "^6.0.3",
+    "redux-devtools": "^3.7.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
   }
 }
