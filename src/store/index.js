@@ -1,16 +1,24 @@
 import { createStore } from "redux";
-import todosReducer from "../reducers/todos";
+import rootReducer from "../reducers/index";
+
+let preloadedState;
+const persistedTodosString = localStorage.getItem("todos");
+if (persistedTodosString) {
+  preloadedState = {
+    todos: JSON.parse(persistedTodosString),
+  };
+}
 
 export default function configureStore() {
   const store = createStore(
-    todosReducer,
-    ["The First Todo"],
+    rootReducer,
+    preloadedState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
   store.dispatch({
     type: "ADD_TODO",
-    text: "Read the docs",
+    payload: "Read the docs",
   });
 
   return store;
