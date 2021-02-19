@@ -1,13 +1,24 @@
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { addTodo } from "../reducers/todos";
+import { nanoid } from "@reduxjs/toolkit";
 
 function App() {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = ({ todo }) => {
-    reset();
-    dispatch({ type: "ADD_TODO", payload: todo });
+  const onSubmit = ({ text }) => {
+    if (text.length > 0) {
+      reset();
+      dispatch(
+        addTodo({
+          id: nanoid(),
+          text: text,
+          completed: false,
+          color: "orangered",
+        })
+      );
+    }
   };
 
   return (
@@ -15,7 +26,7 @@ function App() {
       <label>New Todo</label>
       <input
         type="text"
-        name="todo"
+        name="text"
         ref={register}
         className="bg-white border rounded-lg mx-2 p-1"
       />

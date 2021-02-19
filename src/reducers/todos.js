@@ -1,38 +1,45 @@
-const initialState = {
-  todos: [
-    { id: 0, text: "Learn React", completed: true },
-    { id: 1, text: "Learn Redux", completed: false, color: "purple" },
-    { id: 2, text: "Build something fun!", completed: false, color: "blue" },
-  ],
-};
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { nanoid } from "@reduxjs/toolkit";
 
-function nextTodoId(todos) {
-  const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
-  return maxId + 1;
-}
+// const initialState = {
+//   todos: [
+//     { id: nanoid(), text: "Learn React", completed: true, color: "orangered" },
+//     { id: nanoid(), text: "Learn Redux", completed: false, color: "purple" },
+//     {
+//       id: nanoid(),
+//       text: "Build something fun!",
+//       completed: false,
+//       color: "blue",
+//     },
+//   ],
+// };
 
-const todosReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_TODO":
-      return {
-        ...state,
-        todos: [
-          ...state.todos,
-          {
-            id: nextTodoId(state.todos),
-            text: action.payload,
-            completed: false,
-          },
-        ],
-      };
-    case "REMOVE_TODO":
-      return {
-        ...state,
-        todos: [...state.todos.filter((todo) => todo.text !== action.payload)],
-      };
-    default:
-      return state;
-  }
-};
+export const todosAdapter = createEntityAdapter();
+export const todosSelectors = todosAdapter.getSelectors((state) => state.todos);
 
-export default todosReducer;
+const todosSlice = createSlice({
+  name: "todos",
+  initialState: todosAdapter.getInitialState(),
+  reducers: {
+    addTodo: todosAdapter.addOne,
+    // addTodo(state, action) {
+    //   const text = action.payload;
+    //   state.todos.push({ id: nanoid(), text, completed: false });
+    // },
+    toggleTodo(state, action) {
+      const todo = state.todos.find((todo) => todo.id === action.payload);
+      if (todo) {
+        todo.completed = !todo.completed;
+      }
+    },
+    removeTodo: todosAdapter.removeOne,
+    // removeTodo(state, action) {
+    //   console.log("remove todo: " + action.payload);
+    //   state.todos.filter((todo) => todo.id !== action.payload);
+    // },
+  },
+});
+
+export const { addTodo, toggleTodo, removeTodo } = todosSlice.actions;
+
+export default todosSlice.reducer;
