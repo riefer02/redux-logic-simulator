@@ -1,29 +1,39 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleTodo, removeTodo } from "../reducers/todos";
+import { updateTodo, removeTodo } from "../reducers/todos";
 
 const Todo = ({ text, completed, id, color }) => {
   const dispatch = useDispatch();
 
   const toggle = (id) => {
-    // toggle todo...
+    dispatch(
+      updateTodo({
+        id,
+        changes: { completed: !completed },
+      })
+    );
   };
 
-  const deleteItem = (id) => {
-    // delete todo...
+  const deleteItem = () => {
+    dispatch(removeTodo(id));
   };
+
   return (
-    <div className="card bg-red-400 border-2 border-black rounded-lg p-4">
+    <div className="card bg-gray-300 border border-black rounded-lg p-4">
       <div className="flex justify-between">
-        <div>{text}</div>
-        <span
-          className="rounded-full h-3 w-3 bg-white border-black border"
-          style={{ backgroundColor: color }}
-        ></span>
+        <div className="truncate bg-black text-green-500 border border-gray-500 shadow-sm px-3 py-3 rounded-lg flex-grow ">
+          <div className="">{text}</div>
+          <p className="text-sm">
+            Status: {completed ? "Completed" : "In Progress..."}
+          </p>
+        </div>
+        <div class="flex justify-center pl-4 p-1">
+          <span
+            className="relative rounded-full h-3 w-3 bg-white border-black border"
+            style={{ backgroundColor: color }}
+          ></span>
+        </div>
       </div>
-      <p className="text-sm">
-        Status: {completed ? "Completed" : "In Progress..."}
-      </p>
       <div className="flex justify-between text-xs pt-2">
         <div
           onClick={() => {
