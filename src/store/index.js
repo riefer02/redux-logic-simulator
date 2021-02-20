@@ -1,17 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
+import throttle from "lodash/throttle";
+import { loadState, saveState } from "./localStorage";
 
 import rootReducer from "../reducers/index";
 
-let preloadedState;
-const persistedTodosString = localStorage.getItem("todos");
-if (persistedTodosString) {
-  preloadedState = {
-    todos: JSON.parse(persistedTodosString),
-  };
-}
+const persistedTodosString = loadState();
 
 const store = configureStore({
   reducer: rootReducer,
+  preloadedState: persistedTodosString,
 });
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      todos: store.getState().todos,
+    });
+  }, 1000)
+);
 
 export default store;
