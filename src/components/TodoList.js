@@ -37,7 +37,7 @@ function TodoList() {
   ));
 
   return (
-    <div class="flex flex-col flex-grow h-full justify-between">
+    <div className="flex flex-col flex-grow h-full justify-between">
       <div className="cards p-4">{todosList}</div>
       <div className="flex flex-col p-4 absolute bottom-0">
         <div className="">Deleted Todos:</div>

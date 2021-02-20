@@ -27,7 +27,7 @@ const Todo = ({ text, completed, id, color }) => {
             Status: {completed ? "Completed" : "In Progress..."}
           </p>
         </div>
-        <div class="flex justify-center pl-4 p-1">
+        <div className="flex justify-center pl-4 p-1">
           <span
             className="relative rounded-full h-3 w-3 bg-white border-black border"
             style={{ backgroundColor: color }}
