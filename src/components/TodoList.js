@@ -38,8 +38,8 @@ function TodoList() {
 
   return (
     <div className="flex flex-col flex-grow h-full justify-between">
-      <div className="cards p-4">{todosList}</div>
-      <div className="flex flex-col p-4 absolute bottom-0">
+      <div className="cards p-4 shadow-inner">{todosList}</div>
+      <div className="flex flex-col p-4 fixed bottom-0 shadow-inner w-full">
         <div className="">Deleted Todos:</div>
         <div className="text-sm">{deletedList}</div>
       </div>

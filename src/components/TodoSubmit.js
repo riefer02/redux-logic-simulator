@@ -27,17 +27,20 @@ function App() {
   };
 
   return (
-    <div className="flex justify-between">
-      <form onSubmit={handleSubmit(onSubmit)} className="text-lg p-4">
-        <label>New Todo</label>
+    <div className="flex justify-between ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="text-sm md:text-lg p-1 md:p-4"
+      >
+        <label>New Todo:</label>
         <input
           type="text"
           name="text"
           ref={register}
-          className="bg-white border rounded-lg mx-2 p-1"
+          className="bg-white rounded-lg mx-2 p-1 border border-black border-opacity-50"
         />
         <button
-          className="bg-indigo-200 shadow-sm rounded-lg p-1 hover:bg-indigo-100 hover:shadow-none"
+          className="bg-indigo-200 shadow-sm rounded-lg p-1 hover:bg-indigo-100 hover:shadow-none border-opacity-50 border border-black"
           type="submit"
         >
           Submit
@@ -48,9 +51,9 @@ function App() {
           onClick={() => {
             clearTodos();
           }}
-          className="bg-indigo-200 shadow-sm rounded-lg p-1 hover:bg-indigo-100 hover:shadow-none"
+          className="bg-indigo-200 shadow-sm rounded-lg p-1 hover:bg-indigo-100 hover:shadow-none text-sm md:text-lg border-opacity-50 border border-black"
         >
-          Clear All
+          Clear
         </button>
       </div>
     </div>
