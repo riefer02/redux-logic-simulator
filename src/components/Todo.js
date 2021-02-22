@@ -30,7 +30,7 @@ const Todo = ({ text, completed, id, color }) => {
         <div className="flex justify-center pl-4 p-1">
           <span
             className="relative rounded-full h-3 w-3 bg-white border-black border"
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: completed ? "green" : "orangered" }}
           ></span>
         </div>
       </div>

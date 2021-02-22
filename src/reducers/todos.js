@@ -1,18 +1,4 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { nanoid } from "@reduxjs/toolkit";
-
-// const initialState = {
-//   todos: [
-//     { id: nanoid(), text: "Learn React", completed: true, color: "orangered" },
-//     { id: nanoid(), text: "Learn Redux", completed: false, color: "purple" },
-//     {
-//       id: nanoid(),
-//       text: "Build something fun!",
-//       completed: false,
-//       color: "blue",
-//     },
-//   ],
-// };
 
 export const todosAdapter = createEntityAdapter();
 export const todosSelectors = todosAdapter.getSelectors((state) => state.todos);
